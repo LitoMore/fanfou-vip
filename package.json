@@ -1,0 +1,59 @@
+{
+  "name": "fanfou-vip",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/node": "^12.12.54",
+    "@types/react": "^16.9.44",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.2",
+    "fanfou-sdk-browser": "^0.8.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.1.1",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "xo"
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo-react",
+      "xo-typescript"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^3.8.0",
+    "babel-plugin-import": "^1.13.0",
+    "babel-plugin-styled-components": "^1.11.1",
+    "customize-cra": "^1.0.0",
+    "eslint-config-xo-react": "^0.23.0",
+    "eslint-plugin-better-styled-components": "LitoMore/eslint-plugin-better-styled-components#grouped",
+    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "react-app-rewired": "^2.1.6",
+    "xo": "^0.32.1"
+  },
+  "settings": {
+    "react": {
+      "version": "16"
+    }
+  }
+}
