@@ -1,19 +1,19 @@
 export type Status = {
 	created_at: string;
 	id: string;
-	rawid: string;
+	rawid: number;
 	text: string;
 	source: string;
 	truncated: boolean;
-	in_reply_to_status_id: string;
-	in_reply_to_user_id: string;
-	in_reply_to_screen_name: string;
+	in_reply_to_status_id?: string;
+	in_reply_to_user_id?: string;
+	in_reply_to_screen_name?: string;
 	favorited: boolean;
 	is_self: boolean;
 	location: string;
-	repost_status_id: string;
-	repost_user_id: string;
-	repost_screen_name: string;
+	repost_status_id?: string;
+	repost_user_id?: string;
+	repost_screen_name?: string;
 	type: string;
 	source_url?: string;
 	source_name?: string;

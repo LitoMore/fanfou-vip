@@ -10,6 +10,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.2",
     "fanfou-sdk-browser": "^0.8.0",
+    "modern-normalize": "^0.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",

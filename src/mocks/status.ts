@@ -1,0 +1,58 @@
+export default {
+	created_at: 'Fri Aug 07 16:00:50 +0000 2020',
+	id: 'tD2EQxi6z5M',
+	rawid: 254169863,
+	text: '当前版本的饭否 Pro 暂停开发新功能，正在使用 TypeScript 重写。',
+	source: '<a href="https://github.com/LitoMore/fanfou-pro" target="_blank">Pro</a>',
+	truncated: false,
+	in_reply_to_status_id: '',
+	in_reply_to_user_id: '',
+	favorited: false,
+	in_reply_to_screen_name: '',
+	is_self: true,
+	location: '北京',
+	user: {
+		id: 'lito',
+		name: '饭小默',
+		screen_name: '饭小默',
+		unique_id: '~dS6vyOUe6h4',
+		location: '北京',
+		gender: '男',
+		birthday: '1992-10-12',
+		description: 'Epic',
+		profile_image_url: 'https://s3.meituan.net/v1/mss_3d027b52ec5a4d589e68050845611e68/avatar/s0/00/9f/1m.jpg?1595795831',
+		profile_image_url_large: 'https://s3.meituan.net/v1/mss_3d027b52ec5a4d589e68050845611e68/avatar/l0/00/9f/1m.jpg?1595795831',
+		url: 'https://fanfou.pro/lito',
+		protected: false,
+		followers_count: 1182,
+		friends_count: 1057,
+		favourites_count: 41,
+		statuses_count: 1026,
+		photo_count: 188,
+		following: false,
+		notifications: false,
+		created_at: 'Sun Mar 22 12:21:30 +0000 2009',
+		utc_offset: 28800,
+		profile_background_color: '#acdae5',
+		profile_text_color: '#222222',
+		profile_link_color: '#BFCD00',
+		profile_sidebar_fill_color: '#e2f2da',
+		profile_sidebar_border_color: '#b2d1a3',
+		profile_background_image_url: 'https://static.fanfou.com/img/bg/0.png',
+		profile_background_tile: false,
+		profile_image_origin: 'https://s3.meituan.net/v1/mss_3d027b52ec5a4d589e68050845611e68/avatar/s0/00/9f/1m.jpg',
+		profile_image_origin_large: 'https://s3.meituan.net/v1/mss_3d027b52ec5a4d589e68050845611e68/avatar/l0/00/9f/1m.jpg'
+	},
+	type: 'origin',
+	source_url: 'https://github.com/LitoMore/fanfou-pro',
+	source_name: 'Pro',
+	entities: [
+		{
+			type: 'text',
+			text: '当前版本的饭否 Pro 暂停开发新功能，正在使用 TypeScript 重写。',
+			_text: '当前版本的饭否 Pro 暂停开发新功能，正在使用 TypeScript 重写。'
+		}
+	],
+	plain_text: '当前版本的饭否 Pro 暂停开发新功能，正在使用 TypeScript 重写。'
+};
+
