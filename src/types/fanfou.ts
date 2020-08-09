@@ -20,7 +20,7 @@ export type Status = {
 	plain_text?: string;
 	user: User;
 	photo?: Photo;
-	entites?: Entity[];
+	entities?: Entity[];
 };
 
 export type User = {

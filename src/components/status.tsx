@@ -1,24 +1,8 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components';
 import {queries} from '../global-style';
-import {Status as StatusType} from '../types/fanfou';
-import favGray from '../assets/fav-gray.svg';
-import favDark from '../assets/fav-dark.svg';
-import favBlue from '../assets/fav-blue.svg';
-import replyGray from '../assets/reply-gray.svg';
-import replyDark from '../assets/reply-dark.svg';
-import replyBlue from '../assets/reply-blue.svg';
-import repostGray from '../assets/repost-gray.svg';
-import repostDark from '../assets/repost-dark.svg';
-import repostBlue from '../assets/repost-blue.svg';
-import deleteGray from '../assets/delete-gray.svg';
-import deleteDark from '../assets/delete-dark.svg';
-import deleteBlue from '../assets/delete-blue.svg';
-
-const fav = {normal: favGray, hover: favDark, active: favBlue};
-const reply = {normal: replyGray, hover: replyDark, active: replyBlue};
-const repost = {normal: repostGray, hover: repostDark, active: repostBlue};
-const del = {normal: deleteGray, hover: deleteDark, active: deleteBlue};
+import {Status, Entity} from '../types/fanfou';
+import {fav, reply, repost, del} from '../assets/action-icons';
 
 type IconType = {
 	normal: string;
@@ -28,38 +12,50 @@ type IconType = {
 
 const icons: Record<string, IconType> = {fav, reply, repost, del};
 
-type StatusProps = {
-	className?: string;
-	status: StatusType;
+const TextContent: FunctionComponent<{entity: Entity}> = ({entity}) => {
+	switch (entity.type) {
+		case 'at':
+			return <Link>{entity.text}</Link>;
+		case 'link':
+			return <Link href={entity.link}>{entity.text}</Link>;
+		case 'text':
+		default:
+			return <span>{entity.text}</span>;
+	}
 };
 
-const StatusDiv: FunctionComponent<StatusProps> = ({className, status}) => (
-	<div className={className}>
-		<Row>
-			<Slot>
-				<Avatar src={status.user.profile_image_url}/>
-			</Slot>
-			<Slot flex="1" direction="column">
-				<Name>{status.user.name}</Name>
-				<Text>{status.text}</Text>
-			</Slot>
-			<Slot>
-				<Actions platform="web">
+const StatusDiv: FunctionComponent<{
+	className?: string;
+	status: Status;
+}> = ({className, status}) => {
+	return (
+		<div className={className}>
+			<Row>
+				<Slot>
+					<Avatar src={status.user.profile_image_url}/>
+				</Slot>
+				<Slot flex="1" direction="column">
+					<Name>{status.user.name}</Name>
+					<Text>{status.entities?.map((entity, index) => <TextContent key={`${status.id}-entity-${index}`} entity={entity}/>)}</Text>
+				</Slot>
+				<Slot>
+					<Actions platform="web">
+						<Icon type="reply"/>
+						<Icon type="fav"/>
+						<Icon type="repost"/>
+					</Actions>
+				</Slot>
+			</Row>
+			<Row>
+				<Actions platform="pad">
 					<Icon type="reply"/>
 					<Icon type="fav"/>
 					<Icon type="repost"/>
 				</Actions>
-			</Slot>
-		</Row>
-		<Row>
-			<Actions platform="pad">
-				<Icon type="reply"/>
-				<Icon type="fav"/>
-				<Icon type="repost"/>
-			</Actions>
-		</Row>
-	</div>
-);
+			</Row>
+		</div>
+	);
+};
 
 const StyledStatus = styled(StatusDiv)`
 	display: flex;
@@ -99,6 +95,28 @@ const Text = styled.div`
 	line-height: 1.3125;
 `;
 
+const Link = styled.a`
+	color: var(--linkBlue);
+	text-decoration: none;
+`;
+
+const Icon = styled.div<{
+	type: 'fav' | 'repost' | 'reply' | 'del';
+}>`
+	width: 20px;
+	height: 20px;
+	background-image: ${props => Object.values(icons[props.type]).map((url: string) => `url(${url})`).join(', ')};
+	background-repeat: no-repeat;
+	
+	&:hover {
+		background-image: url(${props => icons[props.type].hover});
+	}
+
+	&:active {
+		background-image: url(${props => icons[props.type].active});
+	}
+`;
+
 const Actions = styled.div<{
 	platform: 'web' | 'pad';
 }>`
@@ -116,6 +134,10 @@ const Actions = styled.div<{
 			background-image: linear-gradient(to right,  #ffffff00, #ffffffcc 30%);
 			${props => props.platform === 'web' ? 'display: flex;' : ''}
 		}
+
+		& ${Icon}:last-child {
+			background-position: 1px 2px;
+		}
 	}
 
 	@media ${queries.pad}, ${queries.mobile} {
@@ -124,23 +146,14 @@ const Actions = styled.div<{
 		margin-left: auto;
 		height: 24px;
 		${props => props.platform === 'pad' ? 'display: flex;' : ''}
-	}
-`;
 
-const Icon = styled.div<{
-	type: 'fav' | 'repost' | 'reply' | 'delete';
-}>`
-	width: 20px;
-	height: 20px;
-	background-image: ${props => Object.values(icons[props.type]).map((url: string) => `url(${url})`).join(', ')};
-	background-repeat: no-repeat;
+		& ${Icon}:first-child {
+			background-position: 2px 2px;
+		}
 	
-	&:hover {
-		background-image: url(${props => icons[props.type].hover});
-	}
-
-	&:active {
-		background-image: url(${props => icons[props.type].active});
+		& ${Icon}:last-child {
+			background-position-y: 2px;
+		}
 	}
 `;
 
