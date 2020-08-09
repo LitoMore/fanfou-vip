@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import {Status as StatusType} from '../types/fanfou';
 
 type StatusProps = {
+	className?: string;
 	status: StatusType;
 };
 
-const StatusDiv: FunctionComponent<StatusProps> = ({status}) => (
-	<Container>
+const StatusDiv: FunctionComponent<StatusProps> = ({className, status}) => (
+	<div className={className}>
 		<Slot>
 			<Avatar src={status.user.profile_image_url}/>
 		</Slot>
@@ -15,10 +16,10 @@ const StatusDiv: FunctionComponent<StatusProps> = ({status}) => (
 			<Name>{status.user.name}</Name>
 			<Text>{status.text}</Text>
 		</Slot>
-	</Container>
+	</div>
 );
 
-export const Container = styled.div`
+const StyledStatus = styled(StatusDiv)`
 	display: flex;
 `;
 
@@ -50,4 +51,4 @@ const Text = styled.div`
 	line-height: 1.3125;
 `;
 
-export default StatusDiv;
+export default StyledStatus;

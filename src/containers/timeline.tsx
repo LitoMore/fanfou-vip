@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import {Container as StatusContainer} from '../components/status';
+import Status from '../components/status';
 
 const TimelineContainer = styled.div`
 	padding: 5px;
 
-	& ${StatusContainer} {
+	& ${Status} {
 		margin-bottom: 5px;
 	}
 
-	& ${StatusContainer}:last-child {
+	& ${Status}:last-child {
 		margin-bottom: 0;
 	}
 `;
