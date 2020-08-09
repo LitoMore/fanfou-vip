@@ -3,6 +3,30 @@ import styled from 'styled-components';
 import {queries} from '../global-style';
 import {Status as StatusType} from '../types/fanfou';
 import favGray from '../assets/fav-gray.svg';
+import favDark from '../assets/fav-dark.svg';
+import favBlue from '../assets/fav-blue.svg';
+import replyGray from '../assets/reply-gray.svg';
+import replyDark from '../assets/reply-dark.svg';
+import replyBlue from '../assets/reply-blue.svg';
+import repostGray from '../assets/repost-gray.svg';
+import repostDark from '../assets/repost-dark.svg';
+import repostBlue from '../assets/repost-blue.svg';
+import deleteGray from '../assets/delete-gray.svg';
+import deleteDark from '../assets/delete-dark.svg';
+import deleteBlue from '../assets/delete-blue.svg';
+
+const fav = {normal: favGray, hover: favDark, active: favBlue};
+const reply = {normal: replyGray, hover: replyDark, active: replyBlue};
+const repost = {normal: repostGray, hover: repostDark, active: repostBlue};
+const del = {normal: deleteGray, hover: deleteDark, active: deleteBlue};
+
+type IconType = {
+	normal: string;
+	hover: string;
+	active: string;
+};
+
+const icons: Record<string, IconType> = {fav, reply, repost, del};
 
 type StatusProps = {
 	className?: string;
@@ -20,18 +44,18 @@ const StatusDiv: FunctionComponent<StatusProps> = ({className, status}) => (
 				<Text>{status.text}</Text>
 			</Slot>
 			<Slot>
-				<Actions for="web">
-					<Fav/>
-					<Fav/>
-					<Fav/>
+				<Actions platform="web">
+					<Icon type="reply"/>
+					<Icon type="fav"/>
+					<Icon type="repost"/>
 				</Actions>
 			</Slot>
 		</Row>
 		<Row>
-			<Actions for="mobile">
-				<Fav/>
-				<Fav/>
-				<Fav/>
+			<Actions platform="pad">
+				<Icon type="reply"/>
+				<Icon type="fav"/>
+				<Icon type="repost"/>
 			</Actions>
 		</Row>
 	</div>
@@ -76,7 +100,7 @@ const Text = styled.div`
 `;
 
 const Actions = styled.div<{
-	for: 'web' | 'mobile';
+	platform: 'web' | 'pad';
 }>`
 	display: none;
 	justify-content: space-around;
@@ -88,28 +112,36 @@ const Actions = styled.div<{
 			flex-direction: column;
 			top: 0;
 			right: 0;
-			${props => props.for === 'web' ? 'display: flex;' : ''}
+			padding-left: 20px;
+			background-image: linear-gradient(to right,  #ffffff00, #ffffffcc 30%);
+			${props => props.platform === 'web' ? 'display: flex;' : ''}
 		}
 	}
 
-	@media ${queries.mobile} {
+	@media ${queries.pad}, ${queries.mobile} {
 		width: 100px;
 		align-self: right;
 		margin-left: auto;
 		height: 24px;
-		${props => props.for === 'mobile' ? 'display: flex;' : ''}
+		${props => props.platform === 'pad' ? 'display: flex;' : ''}
 	}
 `;
 
-const Icon = styled.div`
+const Icon = styled.div<{
+	type: 'fav' | 'repost' | 'reply' | 'delete';
+}>`
 	width: 20px;
 	height: 20px;
-	background-position: center center;
-	background-size: contain;
-`;
+	background-image: ${props => Object.values(icons[props.type]).map((url: string) => `url(${url})`).join(', ')};
+	background-repeat: no-repeat;
+	
+	&:hover {
+		background-image: url(${props => icons[props.type].hover});
+	}
 
-const Fav = styled(Icon)`
-	background-image: url(${favGray});
+	&:active {
+		background-image: url(${props => icons[props.type].active});
+	}
 `;
 
 export default StyledStatus;
