@@ -1,5 +1,5 @@
 module.exports = {
-  "plugins": [
+	"plugins": [
 		'babel-plugin-styled-components'
-  ]
+	]
 };

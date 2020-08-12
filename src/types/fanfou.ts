@@ -105,3 +105,9 @@ export type DirectMessage = {
 	in_reply_to?: DirectMessage;
 };
 
+export type Trend = {
+	created_at: string;
+	name: string;
+	id: number;
+	query: string;
+};

@@ -6,6 +6,10 @@ export const GlobalStyle = createGlobalStyle`
 		--linkBlue: #06c;
 		--textBlack: #222;
 	}
+
+	* {
+		font-size: 14px;
+	}
 `;
 
 export const queries = {

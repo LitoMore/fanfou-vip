@@ -1,9 +1,13 @@
 import React, {FunctionComponent} from 'react';
 import Timeline from './containers/timeline';
+import Trends from './widgets/trends';
 
 const App: FunctionComponent = () => {
 	return (
-		<Timeline type="home"/>
+		<>
+			<Trends/>
+			<Timeline type="home"/>
+		</>
 	);
 };
 
